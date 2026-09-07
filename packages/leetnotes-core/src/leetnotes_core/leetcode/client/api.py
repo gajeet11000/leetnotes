@@ -25,7 +25,7 @@ DIFFICULTY_LEVELS = {
 }
 
 
-class LeetCodeAPI:
+class LeetCodeAPIClient:
     """High-level interface to LeetCode's REST and GraphQL APIs."""
 
     def __init__(self, settings=leetcode_settings):
