@@ -42,7 +42,7 @@ from leetnotes_core.render.markdown_problem import (
 )
 from leetnotes_core.render.settings import render_settings
 from leetnotes_core.render.utils import AI_STYLE, NotesStyle
-from leetnotes_core.sync.pipeline import LeetCodeSyncManager
+from leetnotes_core.leetcode.pipeline import LeetCodeSyncManager
 
 from .common import (
     CircuitBreaker,

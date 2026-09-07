@@ -5,7 +5,7 @@ import time
 
 import click
 import structlog
-from leetnotes_core.sync.pipeline import LeetCodeSyncManager
+from leetnotes_core.leetcode.pipeline import LeetCodeSyncManager
 
 logger = structlog.get_logger(__name__)
 

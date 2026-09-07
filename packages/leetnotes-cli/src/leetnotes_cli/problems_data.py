@@ -3,7 +3,7 @@ pending-slugs cache used to track what's still outstanding."""
 
 import click
 import structlog
-from leetnotes_core.sync.pipeline import LeetCodeSyncManager
+from leetnotes_core.leetcode.pipeline import LeetCodeSyncManager
 
 from .common import (
     PART_ORDER,
