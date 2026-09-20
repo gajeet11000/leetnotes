@@ -40,9 +40,7 @@ def _pin_one(mgr, slug: str) -> bool:
                 logger.info("pending_submission_part_removed_due_to_pin", slug=slug)
             logger.info("submission_pinned", slug=slug)
         else:
-            logger.info(
-                "problems_pin_command_skipped", reason="not_found"
-            )
+            logger.info("problems_pin_command_skipped", reason="not_found")
         return pinned
 
 
@@ -54,9 +52,7 @@ def _unpin_one(mgr, slug: str) -> bool:
         if unpinned:
             logger.info("submission_unpinned", slug=slug)
         else:
-            logger.info(
-                "problems_unpin_command_skipped", reason="not_found"
-            )
+            logger.info("problems_unpin_command_skipped", reason="not_found")
         return unpinned
 
 
@@ -85,9 +81,7 @@ def _toggle_pin_one(mgr, slug: str) -> bool:
     help="Pin the stored submission for every slug that has one.",
 )
 @click.option("--skip-confirm", is_flag=True, help="Skip the confirmation prompt.")
-def problems_pin_pin(
-    slug: str | None, run_all: bool, skip_confirm: bool
-) -> None:
+def problems_pin_pin(slug: str | None, run_all: bool, skip_confirm: bool) -> None:
     """Pin the stored submission (code) for one or more problems.
     When pinned, the submission won't be fetched or looked for updates.
     Destructive — asks to confirm unless --skip-confirm.
@@ -143,9 +137,7 @@ def problems_pin_pin(
     help="Unpin the stored submission for every slug that has one.",
 )
 @click.option("--skip-confirm", is_flag=True, help="Skip the confirmation prompt.")
-def problems_pin_unpin(
-    slug: str | None, run_all: bool, skip_confirm: bool
-) -> None:
+def problems_pin_unpin(slug: str | None, run_all: bool, skip_confirm: bool) -> None:
     """Unpin the stored submission (code) for one or more problems.
     When unpinned, the submission will be fetched and looked for updates again.
     Destructive — asks to confirm unless --skip-confirm.
@@ -201,9 +193,7 @@ def problems_pin_unpin(
     help="Toggle the pin status for every slug that has one.",
 )
 @click.option("--skip-confirm", is_flag=True, help="Skip the confirmation prompt.")
-def problems_pin_toggle(
-    slug: str | None, run_all: bool, skip_confirm: bool
-) -> None:
+def problems_pin_toggle(slug: str | None, run_all: bool, skip_confirm: bool) -> None:
     """Toggle the pin status for the stored submission (code) for one or more problems.
     Toggling to pinned prevents future updates; toggling to unpinned allows updates again.
     Destructive — asks to confirm unless --skip-confirm.
@@ -236,14 +226,18 @@ def problems_pin_toggle(
             return
 
     if not skip_confirm:
-        click.echo(f"About to toggle pin status for {len(slugs)} submission(s): {', '.join(slugs)}")
+        click.echo(
+            f"About to toggle pin status for {len(slugs)} submission(s): {', '.join(slugs)}"
+        )
         click.confirm("This cannot be undone. Continue?", abort=True)
 
     succeeded, failed = [], []
     for target_slug in slugs:
         new_status = _toggle_pin_one(mgr, target_slug)
         if new_status is not None:  # Successfully toggled
-            click.echo(f"[done] {'pinned' if new_status else 'unpinned'} submission for {target_slug}")
+            click.echo(
+                f"[done] {'pinned' if new_status else 'unpinned'} submission for {target_slug}"
+            )
             succeeded.append(target_slug)
         else:
             click.echo(f"[fail] {target_slug}: no stored submission")

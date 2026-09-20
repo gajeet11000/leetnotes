@@ -21,7 +21,7 @@ def get_resource_path(subpath: str) -> Path:
         p = Path(str(ref))
         if p.exists():
             return p
-    except (TypeError, FileNotFoundError, ModuleNotFoundError, AttributeError):
+    except TypeError, FileNotFoundError, ModuleNotFoundError, AttributeError:
         pass
 
     pkg_path = Path(__file__).resolve().parent / "resources" / subpath

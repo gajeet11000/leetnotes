@@ -231,12 +231,16 @@ class LeetCodeSyncManager:
                 if pin_status:
                     logger.info(
                         "submission_pin_skipped",
-                        lang=existing_submission.lang
-                        if existing_submission
-                        else "unknown",
-                        submission_date=str(existing_submission.submission_date)
-                        if existing_submission
-                        else "unknown",
+                        lang=(
+                            existing_submission.lang
+                            if existing_submission
+                            else "unknown"
+                        ),
+                        submission_date=(
+                            str(existing_submission.submission_date)
+                            if existing_submission
+                            else "unknown"
+                        ),
                     )
                     return False
 

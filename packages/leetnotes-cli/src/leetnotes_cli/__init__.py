@@ -11,9 +11,9 @@ from . import (  # noqa: F401  (side effect: registers commands onto `cli`)
     problems,
     problems_data,
     problems_db,
+    problems_pin,
     problems_recent,
     problems_render,
-    problems_pin,
 )
 from .root import cli
 

@@ -16,7 +16,7 @@ def load_auth_cache() -> dict | None:
 
     try:
         return json.loads(path.read_text())
-    except (json.JSONDecodeError, OSError):
+    except json.JSONDecodeError, OSError:
         logger.warning("auth_cache_read_failed", path=str(path))
         return None
 
@@ -28,10 +28,12 @@ def save_auth_cache(credential_hash: str, verified_at: float) -> None:
 
     tmp_path = path.with_suffix(".tmp")
     tmp_path.write_text(
-        json.dumps({
-            "credential_hash": credential_hash,
-            "verified_at": verified_at,
-        })
+        json.dumps(
+            {
+                "credential_hash": credential_hash,
+                "verified_at": verified_at,
+            }
+        )
     )
     tmp_path.replace(path)
 

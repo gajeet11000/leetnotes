@@ -28,16 +28,18 @@ def create_session(settings=leetcode_settings) -> requests.Session:
     session.mount("https://", rate_limiter)
     session.mount("http://", rate_limiter)
 
-    session.headers.update({
-        "X-CSRFToken": settings.CSRF_TOKEN,
-        "Content-Type": "application/json",
-        "Referer": str(settings.BASE_URL),
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
-        ),
-    })
+    session.headers.update(
+        {
+            "X-CSRFToken": settings.CSRF_TOKEN,
+            "Content-Type": "application/json",
+            "Referer": str(settings.BASE_URL),
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            ),
+        }
+    )
 
     session.cookies.set(
         "LEETCODE_SESSION",

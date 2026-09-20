@@ -102,9 +102,11 @@ class ProblemStorage:
             record.category,
             record.raw_question_html,
             record.has_images,
-            json.dumps(record.imgs_local_paths)
-            if record.imgs_local_paths is not None
-            else None,
+            (
+                json.dumps(record.imgs_local_paths)
+                if record.imgs_local_paths is not None
+                else None
+            ),
             record.content.remote_markdown,
             record.content.local_html,
             record.content.local_markdown,
